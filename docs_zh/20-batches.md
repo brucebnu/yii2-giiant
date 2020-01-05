@@ -47,7 +47,7 @@ You can run batches of base-model and CRUD generation with the build in batch co
 
 for Linux
 
-    ./yii batch --tables=profile,social_account,user,token
+    ./console/yii batch --tables=user
 
 It will process the given tables, for more details see `./yii help giiant-batch`. See the [Sakila example](50-generate-sakila-backend.md) for a detailed example.
 
@@ -58,11 +58,19 @@ It will process the given tables, for more details see `./yii help giiant-batch`
 You can also override the batch defaults via command line options, this example is using the default configuration from `giiant-batch`
 
 ```
-./yii giiant-batch \
+./console/yii giiant-batch \
     --interactive=0 \
     --overwrite=1 \
     --modelDb=db \
+    --crudViewPath=@backend/giiTemplates/adminlte3/model/default \
     --modelBaseClass=yii\\db\\ActiveRecord \
     --crudProviders=schmunk42\\giiant\\generators\\crud\\providers\\core\\optsProvider \
-    --tables=account,article,variation_status
+    --tables=user
+```
+
+### Example for custom templates
+```
+./console/yii batch -db:org --tables=user
+
+
 ```

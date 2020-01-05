@@ -2,7 +2,9 @@
 
 namespace schmunk42\giiant\generators\module;
 
+use Yii;
 use yii\gii\CodeFile;
+use yii\helpers\Html;
 use yii\helpers\StringHelper;
 
 /**
@@ -29,6 +31,35 @@ class Generator extends \yii\gii\generators\module\Generator
     public function requiredTemplates()
     {
         return ['module.php', 'controller.php', 'view.php'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function successMessage()
+    {
+
+        if (Yii::$app->hasModule($this->moduleID)) {
+            $link = Html::a('try it now', Yii::$app->getUrlManager()->createUrl($this->moduleID), ['target' => '_blank']);
+            return "The module has been generated successfully. You may $link.";
+        }
+
+        $output = <<<EOD
+<p>The module has been generated successfully.</p>
+<p>To access the module, you need to add this to your application configuration:</p>
+EOD;
+        $code = <<<EOD
+<?php
+    ......
+    'modules' => [
+        '{$this->moduleID}' => [
+            'class' => {$this->moduleClass}::class,
+        ],
+    ],
+    ......
+EOD;
+
+        return $output . '<pre>' . highlight_string($code, true) . '</pre>';
     }
 
     /**

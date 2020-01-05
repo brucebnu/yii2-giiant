@@ -28,16 +28,16 @@ class Bootstrap implements BootstrapInterface
     {
         if ($app->hasModule('gii')) {
             if (!isset($app->getModule('gii')->generators['giiant-model'])) {
-                $app->getModule('gii')->generators['giiant-model'] = 'schmunk42\giiant\generators\model\Generator';
+                $app->getModule('gii')->generators['giiant-model'] = \schmunk42\giiant\generators\model\Generator::class;
             }
 
             if (!isset($app->getModule('gii')->generators['giiant-extension'])) {
-                $app->getModule('gii')->generators['giiant-extension'] = 'schmunk42\giiant\generators\extension\Generator';
+                $app->getModule('gii')->generators['giiant-extension'] = \schmunk42\giiant\generators\extension\Generator::class;
             }
 
             if (!isset($app->getModule('gii')->generators['giiant-crud'])) {
                 $app->getModule('gii')->generators['giiant-crud'] = [
-                    'class' => 'schmunk42\giiant\generators\crud\Generator',
+                    'class' => \schmunk42\giiant\generators\crud\Generator::class,
                     'templates' => [
                         'editable' => __DIR__.'/generators/crud/editable',
                     ],
@@ -45,15 +45,15 @@ class Bootstrap implements BootstrapInterface
             }
 
             if (!isset($app->getModule('gii')->generators['giiant-module'])) {
-                $app->getModule('gii')->generators['giiant-module'] = 'schmunk42\giiant\generators\module\Generator';
+                $app->getModule('gii')->generators['giiant-module'] = \schmunk42\giiant\generators\module\Generator::class;
             }
 
             if (!isset($app->getModule('gii')->generators['giiant-test'])) {
-                $app->getModule('gii')->generators['giiant-test'] = 'schmunk42\giiant\generators\test\Generator';
+                $app->getModule('gii')->generators['giiant-test'] = \schmunk42\giiant\generators\test\Generator::class;
             }
 
             if ($app instanceof \yii\console\Application) {
-                $app->controllerMap['giiant-batch'] = 'schmunk42\giiant\commands\BatchController';
+                $app->controllerMap['giiant-batch'] = \schmunk42\giiant\commands\BatchController::class;
             }
         }
     }

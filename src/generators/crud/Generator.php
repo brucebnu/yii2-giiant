@@ -72,12 +72,12 @@ class Generator extends \yii\gii\generators\crud\Generator
     /**
      * @var int maximum number of columns to show in grid
      */
-    public $gridMaxColumns = 8;
+    public $gridMaxColumns = 20;
 
     /**
      * @var int maximum number of columns to show in grid
      */
-    public $gridRelationMaxColumns = 8;
+    public $gridRelationMaxColumns = 20;
 
     /**
      * @var array array of composer packages (only to show information to the developer in the web UI)
